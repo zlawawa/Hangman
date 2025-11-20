@@ -1,70 +1,80 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <windows.h>
 #include <ctime>
+#include "h.h"
 using namespace std;
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
     int x;
-    cout << "1. Играть" << endl;
-    cout << "2. Правила" << endl;
-    cout << "3. Выход" << endl;
-    cout << "Выберите действие: ";
-    cin >> x;
-
+    cout<<"Добрый день!"<<endl;
+    cout<<"Я игра 'Виселица' на английском"<<endl;
+    cout<<"-------------"<<endl;
+    cout<<"|   Играть   |"<<endl;
+    cout<<"-------------"<<endl;
+    cout<<"------------------"<<endl;
+    cout<<"|  Правила игры   |"<<endl;
+    cout<<"------------------"<<endl;
+    cout<<"------------"<<endl;
+    cout<<"|   Выход   |"<<endl;
+    cout<<"------------"<<endl;
+    cout<<"Выберете нужное действие:";
+    cin>>x;
     switch (x) {
-        case 1: {
+        case(1): {
             int z;
-            cout << "Выберите категорию:" << endl;
-            cout << "1. Животные" << endl;
-            cout << "2. Еда" << endl;
-            cout << "3. Растения" << endl;
-            cout << "Ваш выбор: ";
-            cin >> z;
-
-            string word;
-            srand(time(0));
-
+            cout<<"Выберете категорию"<<endl;
+            cout<<"1)Животные"<<endl;
+            cout<<"2)Еда"<<endl;
+            cout<<"3)Растения"<<endl;
+            cin>>z;
             switch (z) {
-                case 1: {
+                cout << "=== Виселица ===\n";
+                cout << "Вы можете ввести одну букву или целое слово.!\n\n";
+                case(1): {
                     string words[] = {"cat", "dog", "monkey", "lion", "deer"};
-                    word = words[rand() % 5];
+                    srand(time(0));
+                    string word = words[rand() % 5];
+                    string guess(word.size(), '_');
+                    int tries = 6;
+                    string input;
+                    game(tries,guess,word,input);
                     break;
                 }
-                case 2: {
+                case(2): {
                     string words[] = {"cake", "icecream", "pizza", "pasta", "juice"};
-                    word = words[rand() % 5];
+                    srand(time(0));
+                    string word = words[rand() % 5];
+                    string guess(word.size(), '_');
+                    int tries = 6;
+                    string input;
+                    game(tries,guess,word,input);
                     break;
                 }
-                case 3: {
+                case(3): {
                     string words[] = {"flower", "grass", "rose", "sunflower", "mint"};
-                    word = words[rand() % 5];
+                    srand(time(0));
+                    string word = words[rand() % 5];
+                    string guess(word.size(), '_');
+                    int tries = 6;
+                    string input;
+                    game(tries,guess,word,input);
                     break;
                 }
-                default:
-                    cout << "Неверный выбор" << endl;
-                    return 1;
+
             }
-
-            string guess(word.size(), '_');
-            int tries = 6;
-            string input;
-            game(tries, guess, word, input);
             break;
         }
-        case 2: {
-            cout << "Правила:" << endl;
-            cout << "- Программа загадывает слово" << endl;
-            cout << "- Вы вводите буквы или слово целиком" << endl;
-            cout << "- У вас 6 попыток" << endl;
+            case(2): {
+            cout<<"Программа загадывает слово из выбранной категории."<<endl;
+            cout<<"Пользователь вводит букву или слово целиком."<<endl;
+            cout<<"Если слово отгадано, то игра завершается."<<endl;
             break;
         }
-        case 3: {
+            case(3): {
             break;
         }
-        default:
-            cout << "Неверный выбор" << endl;
     }
-
-    return 0;
 }
