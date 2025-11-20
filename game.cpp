@@ -5,9 +5,24 @@
 #include <string>
 #include <cstdlib>
 using namespace std;
+void drawHangman(int triesLeft) {
+    int stage = 6 - triesLeft;
+    cout << " _______\n";
+    cout << " |     |\n";
+    cout << " |     " << (stage > 0 ? "O" : " ") << "\n";
+    cout << " |    "  << (stage > 2 ? "/" : " ")
+                     << (stage > 1 ? "|" : " ")
+                     << (stage > 3 ? "\\" : " ") << "\n";
+    cout << " |    "  << (stage > 4 ? "/" : " ")
+                     << " "
+                     << (stage > 5 ? "\\" : " ") << "\n";
+    cout << " |\n";
+    cout << "_|_\n\n";
+}
 
-void game(int tries, string guess, string word, string input) {
+void game(int tries,string guess,string word, string input) {
     while (tries > 0 && guess != word) {
+        drawHangman(tries);
         cout << "Слово: ";
         for (char c : guess) cout << c << ' ';
         cout << "\nОсталось попыток: " << tries << "\n";
@@ -41,8 +56,21 @@ void game(int tries, string guess, string word, string input) {
     }
     if (guess == word) {
         cout << "\nТы выиграл! Слово было: " << word << "\n";
+        cout << " /\\_/\\\n";
+        cout << "( o.o )\n";
+        cout << " > ^ <\n";
     }
     else{
         cout << "\nТы проиграл. Слово было: " << word << "\n";
-    }
+    draw(tries);
+}
+}
+void draw(int tries) {
+    cout << " _______\n";
+    cout << " |     |\n";
+    cout << " |     0"<<"\n";
+    cout << " |    /|\\ "<<"\n";
+    cout << " |    / \\ " <<"\n";
+    cout << " |\n";
+    cout << "_|_\n\n";
 }
